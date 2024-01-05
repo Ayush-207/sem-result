@@ -21,7 +21,7 @@ export default function Result({ data }) {
         for (let i = 0; i < (data[1].length - 7) / 4; i++) {
             body.push(<tr key={i} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {data[1][i * 4 + 3].replace(/\s+/g, '')}
+                    {data[1][i * 4 + 3].split(' ')[0]}
                 </th>
                 <td className="px-6 py-4">
                     {data[1][i * 4 + 4]}
