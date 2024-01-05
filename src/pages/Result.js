@@ -16,7 +16,7 @@ export default function Result({ data }) {
     // console.log(data);
     const navigate = useNavigate();
     const body = [];
-    if (data.length > 1) {
+    if (data.length > 0 && data.length > 1) {
 
         for (let i = 0; i < (data[1].length - 7) / 4; i++) {
             body.push(<tr key={i} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -38,8 +38,7 @@ export default function Result({ data }) {
 
     return (<div>
 
-
-        {data.length > 1 ? (<div><div className="m-4 relative overflow-x-auto">
+        {data.length > 1 && data[1].length > 2 ? (<div><div className="m-4 relative overflow-x-auto">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
