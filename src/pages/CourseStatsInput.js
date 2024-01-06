@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-"use strict";
 export default function CourseStatsInput({ coursecode, branchcode, handleChange1, handleChange2, setData }) {
     const navigate = useNavigate();
 
