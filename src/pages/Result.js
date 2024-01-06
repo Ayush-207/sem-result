@@ -4,7 +4,7 @@ export default function Result({ data }) {
     // const [data, setData] = useState([]);
     // useEffect(() => {
     //     const getResult = async () => {
-    //         const response = await fetch('http://localhost:3001/getResult?rollno=' + rolln, {
+    //         const response = await fetch('https://sem-result-server.onrender.com/getResult?rollno=' + rolln, {
     //             mode: 'cors',
     //             method: 'GET'
     //         });
@@ -22,6 +22,7 @@ export default function Result({ data }) {
             body.push(<tr key={i} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {data[1][i * 4 + 3].split(' ')[0]}
+
                 </th>
                 <td className="px-6 py-4">
                     {data[1][i * 4 + 4]}
@@ -59,7 +60,7 @@ export default function Result({ data }) {
                             {data[1][1]}
                         </th>
                         <td className="px-6 py-4">
-                            {data[1][2].split('\n')[0]}
+                            {data[1][2].split('\n')[0].split(' ').slice(0, 2).map((a) => a + " ")}
                         </td>
                         <td className="px-6 py-4">
                             {data[1][data[1].length - 2]}
@@ -91,7 +92,7 @@ export default function Result({ data }) {
                         {body}
                     </tbody>
                 </table>
-            </div></div>) : (<div>No such student exists! Try again.</div>)}
+            </div></div>) : (<div className="mt-24 mb-10 flex justify-center items-center md:text-xl text-md text-slate-100">No such student exists! Try again.</div>)}
 
         <div className="flex justify-center">
             <button onClick={() => navigate('/')} type="button" className="mt-4 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Another result</button>
