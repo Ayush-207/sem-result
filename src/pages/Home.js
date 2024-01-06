@@ -20,7 +20,7 @@ export default function Home({ rolln, handleChange, setData }) {
     async function getRank() {
         if (grade != '') {
             console.log(grade);
-            const response = await fetch('http://localhost:3001/getrank?grade=' + grade, {
+            const response = await fetch('https://sem-result-server.onrender.com/getrank?grade=' + grade, {
                 mode: 'cors',
                 method: 'GET'
             });
