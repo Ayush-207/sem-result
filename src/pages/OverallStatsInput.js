@@ -14,7 +14,7 @@ export default function OverallStatsInput({ branchcode, handleChange2, setData }
             window.alert("Invalid Year of Admission");
         }
         else {
-            const response = await fetch('http://localhost:3001/getoverallstats?&branchcode=' + branchcode.toUpperCase() + '&yoa=' + yoa.toUpperCase(), {
+            const response = await fetch('https://sem-result-server.onrender.com/getoverallstats?&branchcode=' + branchcode.toUpperCase() + '&yoa=' + yoa.toUpperCase(), {
                 mode: 'cors',
                 method: 'GET'
             });

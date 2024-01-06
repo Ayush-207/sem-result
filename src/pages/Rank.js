@@ -22,7 +22,7 @@ export default function Rank({ branchcode, handleChange2 }) {
         }
         else if (grade != '') {
             console.log(grade);
-            const response = await fetch('http://localhost:3001/getrank?grade=' + grade + '&yoa=' + yoa + '&branchcode=' + branchcode, {
+            const response = await fetch('https://sem-result-server.onrender.com/getrank?grade=' + grade + '&yoa=' + yoa + '&branchcode=' + branchcode, {
                 mode: 'cors',
                 method: 'GET'
             });

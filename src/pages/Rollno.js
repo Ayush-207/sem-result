@@ -4,7 +4,7 @@ export default function Rollno({ rolln, handleChange, setData }) {
     const navigate = useNavigate();
 
     async function getResult() {
-        const response = await fetch('http://localhost:3001/getresult?rollno=' + rolln.toUpperCase(), {
+        const response = await fetch('https://sem-result-server.onrender.com/getresult?rollno=' + rolln.toUpperCase(), {
             mode: 'cors',
             method: 'GET'
         });

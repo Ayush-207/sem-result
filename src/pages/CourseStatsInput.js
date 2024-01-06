@@ -15,7 +15,7 @@ export default function CourseStatsInput({ coursecode, branchcode, handleChange1
             window.alert("Invalid Year of Admission");
         }
         else if (coursecode != '' && yoa != '') {
-            const response = await fetch('http://localhost:3001/getcoursestats?coursecode=' + coursecode.toUpperCase() + '&branchcode=' + branchcode.toUpperCase() + '&yoa=' + yoa, {
+            const response = await fetch('https://sem-result-server.onrender.com/getcoursestats?coursecode=' + coursecode.toUpperCase() + '&branchcode=' + branchcode.toUpperCase() + '&yoa=' + yoa, {
                 mode: 'cors',
                 method: 'GET'
             });
