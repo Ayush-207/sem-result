@@ -4,7 +4,7 @@ export default function Result({ data }) {
     // const [data, setData] = useState([]);
     // useEffect(() => {
     //     const getResult = async () => {
-    //         const response = await fetch('https://sem-result-server.onrender.com/getResult?rollno=' + rolln, {
+    //         const response = await fetch('http://localhost:3001/getResult?rollno=' + rolln, {
     //             mode: 'cors',
     //             method: 'GET'
     //         });

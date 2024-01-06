@@ -7,6 +7,7 @@ import Stats from './pages/Stats';
 import { useState } from "react";
 import CourseStatsInput from "./pages/CourseStatsInput.js";
 import OverallStatsInput from "./pages/OverallStatsInput.js";
+import Rank from './pages/Rank.js';
 
 function App() {
   const [rolln, setRolln] = useState("");
@@ -31,6 +32,7 @@ function App() {
         <Route path="/get_overall_stats" element={<OverallStatsInput branchcode={branchcode} handleChange2={handleChangeBranchcode} setData={setData} />} />
         <Route path="/result" element={<Result data={data} />} />
         <Route path='/stats' element={<Stats data={data} />} />
+        <Route path="/get_rank" element={<Rank branchcode={branchcode} handleChange2={handleChangeBranchcode} />} />
       </Routes>
     </BrowserRouter>
   );

@@ -4,7 +4,7 @@ export default function Rollno({ rolln, handleChange, setData }) {
     const navigate = useNavigate();
 
     async function getResult() {
-        const response = await fetch('https://sem-result-server.onrender.com/getresult?rollno=' + rolln.toUpperCase(), {
+        const response = await fetch('http://localhost:3001/getresult?rollno=' + rolln.toUpperCase(), {
             mode: 'cors',
             method: 'GET'
         });
@@ -24,6 +24,8 @@ export default function Rollno({ rolln, handleChange, setData }) {
                     </input>
                     <div className="flex justify-center">
                         <button id="btn" onClick={getResult} type="submit" className="mt-4 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Get Result</button>
+                        <button onClick={() => navigate('/')} type="button" className="mt-4 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Back</button>
+
                     </div>
                 </form>
             </div>
