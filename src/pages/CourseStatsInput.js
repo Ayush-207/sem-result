@@ -4,13 +4,15 @@ export default function CourseStatsInput({ coursecode, branchcode, handleChange1
     const navigate = useNavigate();
 
     async function getCourseStats() {
-        const response = await fetch('https://sem-result-server.onrender.com/getcoursestats?coursecode=' + coursecode.toUpperCase() + '&branchcode=' + branchcode.toUpperCase(), {
-            mode: 'cors',
-            method: 'GET'
-        });
-        const val = await response.json();
-        setData(val);
-        navigate('/stats');
+        if (coursecode != '') {
+            const response = await fetch('https://sem-result-server.onrender.com/getcoursestats?coursecode=' + coursecode.toUpperCase() + '&branchcode=' + branchcode.toUpperCase(), {
+                mode: 'cors',
+                method: 'GET'
+            });
+            const val = await response.json();
+            setData(val);
+            navigate('/stats');
+        }
     }
 
 
