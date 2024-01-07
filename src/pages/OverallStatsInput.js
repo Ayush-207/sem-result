@@ -22,7 +22,7 @@ export default function OverallStatsInput({ setData, page, setpage }) {
         }
         else {
             try {
-                const response = await fetch('http://localhost:3001/getoverallstats?&branchcode=' + branchcode.toUpperCase() + '&yoa=' + yoa.toUpperCase(), {
+                const response = await fetch('https://sem-result-server.onrender.com/getoverallstats?&branchcode=' + branchcode.toUpperCase() + '&yoa=' + yoa.toUpperCase(), {
                     mode: 'cors',
                     method: 'GET'
                 });
