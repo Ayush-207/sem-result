@@ -5,7 +5,7 @@ export default function CourseStatsInput({ coursecode, branchcode, handleChange1
 
     const [yoa, setYoa] = useState('');
     useEffect(() => {
-        setpage('/getoverallstats');
+        setpage('getcoursestats');
         console.log(page);
     }, [page]);
     function handleChangeYoa(event) {

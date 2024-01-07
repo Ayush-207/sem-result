@@ -5,7 +5,8 @@ export default function OverallStatsInput({ branchcode, handleChange2, setData, 
 
     const [yoa, setYoa] = useState('');
     useEffect(() => {
-        setpage('/getoverallstats');
+        setpage('getoverallstats');
+        console.log(page);
     }, [page]);
     function handleChangeYoa(event) {
         setYoa(event.target.value);

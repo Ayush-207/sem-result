@@ -28,11 +28,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/get_result" element={<Rollno rolln={rolln} handleChange={handleChangeRollno} setData={setData} />} />
+        <Route path="/getresult" element={<Rollno rolln={rolln} handleChange={handleChangeRollno} setData={setData} />} />
         <Route path="/getcoursestats" element={<CourseStatsInput coursecode={coursecode} branchcode={branchcode} handleChange1={handleChangeCoursecode} handleChange2={handleChangeBranchcode} setData={setData} page={page} setpage={setPage} />} />
         <Route path="/getoverallstats" element={<OverallStatsInput branchcode={branchcode} handleChange2={handleChangeBranchcode} setData={setData} page={page} setpage={setPage} />} />
         <Route path="/result" element={<Result data={data} />} />
-        <Route path='/stats' element={<Stats data={data} />} />
+        <Route path='/stats' element={<Stats data={data} page={page} />} />
         <Route path="/get_rank" element={<Rank branchcode={branchcode} handleChange2={handleChangeBranchcode} />} />
       </Routes>
     </BrowserRouter>

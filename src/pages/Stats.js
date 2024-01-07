@@ -1,21 +1,37 @@
 import { useNavigate } from "react-router-dom";
-export default function Stats({ data }) {
-    
+export default function Stats({ data, page }) {
+
     const navigate = useNavigate();
     let body = [];
     if (data.length > 0) {
         for (let i = 10; i >= 0; i--) {
-            body.push(
-                <tr key={i} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {i == 10 ? 10 : i + '- ' + (i + 1)}
-                    </th>
-                    <td className="px-6 py-4">
-                        {/* {data[1][2].split('\n')[0].split(' ').slice(0, 2).map((a) => a + " ")} */}
-                        {data[0][i] ? data[0][i] : 0}
-                    </td>
-                </tr>
-            )
+            if (page == 'getcoursestats') {
+                body.push(
+                    <tr key={i} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {i}
+                        </th>
+                        <td className="px-6 py-4">
+                            {/* {data[1][2].split('\n')[0].split(' ').slice(0, 2).map((a) => a + " ")} */}
+                            {data[0][i] ? data[0][i] : 0}
+                        </td>
+                    </tr>
+                )
+            }
+            else {
+                body.push(
+                    <tr key={i} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {i == 10 ? 10 : i + '- ' + (i + 1)}
+                        </th>
+                        <td className="px-6 py-4">
+                            {/* {data[1][2].split('\n')[0].split(' ').slice(0, 2).map((a) => a + " ")} */}
+                            {data[0][i] ? data[0][i] : 0}
+                        </td>
+                    </tr>
+                )
+            }
+
         }
         body.push(<tr key={11} className="font-bold bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -27,7 +43,7 @@ export default function Stats({ data }) {
             </td>
         </tr>);
     }
-    console.log(body);
+    // console.log(body);
     return (
         <div>
             {data.length > 0 ? (
