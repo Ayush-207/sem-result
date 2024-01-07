@@ -1,12 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-export default function CourseStatsInput({ coursecode, branchcode, handleChange1, handleChange2, setData, page, setpage }) {
+export default function CourseStatsInput({ setData, page, setpage }) {
     const navigate = useNavigate();
+    const [branchcode, setBranchcode] = useState("");
+    const [coursecode, setCoursecode] = useState("");
+
+    function handleChange2(event) {
+        setBranchcode(event.target.value);
+    }
+    function handleChange1(event) {
+        setCoursecode(event.target.value);
+    }
 
     const [yoa, setYoa] = useState('');
     useEffect(() => {
         setpage('getcoursestats');
-        console.log(page);
+        // console.log(page);
     }, [page]);
     function handleChangeYoa(event) {
         setYoa(event.target.value);
@@ -17,13 +26,18 @@ export default function CourseStatsInput({ coursecode, branchcode, handleChange1
             window.alert("Invalid Year of Admission");
         }
         else if (coursecode != '' && yoa != '') {
-            const response = await fetch('https://sem-result-server.onrender.com/getcoursestats?coursecode=' + coursecode.toUpperCase() + '&branchcode=' + branchcode.toUpperCase() + '&yoa=' + yoa, {
-                mode: 'cors',
-                method: 'GET'
-            });
-            const val = await response.json();
-            setData(val);
-            navigate('/stats');
+            try {
+                const response = await fetch('http://localhost:3001/getcoursestats?coursecode=' + coursecode.toUpperCase() + '&branchcode=' + branchcode.toUpperCase() + '&yoa=' + yoa, {
+                    mode: 'cors',
+                    method: 'GET'
+                });
+                const val = await response.json();
+                setData(val);
+                navigate('/stats');
+            }
+            catch (e) {
+                console.log(e);
+            }
         }
     }
 

@@ -10,30 +10,19 @@ import OverallStatsInput from "./pages/OverallStatsInput.js";
 import Rank from './pages/Rank.js';
 
 function App() {
-  const [rolln, setRolln] = useState("");
-  const [branchcode, setBranchcode] = useState("");
-  const [coursecode, setCoursecode] = useState("");
   const [page, setPage] = useState('/getcoursestats');
   const [data, setData] = useState([]);
-  function handleChangeRollno(event) {
-    setRolln(event.target.value);
-  }
-  function handleChangeBranchcode(event) {
-    setBranchcode(event.target.value);
-  }
-  function handleChangeCoursecode(event) {
-    setCoursecode(event.target.value);
-  }
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/getresult" element={<Rollno rolln={rolln} handleChange={handleChangeRollno} setData={setData} />} />
-        <Route path="/getcoursestats" element={<CourseStatsInput coursecode={coursecode} branchcode={branchcode} handleChange1={handleChangeCoursecode} handleChange2={handleChangeBranchcode} setData={setData} page={page} setpage={setPage} />} />
-        <Route path="/getoverallstats" element={<OverallStatsInput branchcode={branchcode} handleChange2={handleChangeBranchcode} setData={setData} page={page} setpage={setPage} />} />
+        <Route path="/getresult" element={<Rollno setData={setData} />} />
+        <Route path="/getcoursestats" element={<CourseStatsInput setData={setData} page={page} setpage={setPage} />} />
+        <Route path="/getoverallstats" element={<OverallStatsInput setData={setData} page={page} setpage={setPage} />} />
         <Route path="/result" element={<Result data={data} />} />
         <Route path='/stats' element={<Stats data={data} page={page} />} />
-        <Route path="/getrank" element={<Rank branchcode={branchcode} handleChange2={handleChangeBranchcode} />} />
+        <Route path="/getrank" element={<Rank/>} />
       </Routes>
     </BrowserRouter>
   );

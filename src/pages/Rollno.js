@@ -1,16 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-export default function Rollno({ rolln, handleChange, setData }) {
+export default function Rollno({ setData }) {
     const navigate = useNavigate();
+    const [rolln, setRolln] = useState("");
+    function handleChange(event) {
+        setRolln(event.target.value);
+    }
 
     async function getResult() {
-        const response = await fetch('https://sem-result-server.onrender.com/getresult?rollno=' + rolln.toUpperCase(), {
-            mode: 'cors',
-            method: 'GET'
-        });
-        const val = await response.json();
-        setData(val);
-        navigate('/result');
+        try {
+            const response = await fetch('http://localhost:3001/getresult?rollno=' + rolln.toUpperCase(), {
+                mode: 'cors',
+                method: 'GET'
+            });
+            const val = await response.json();
+            // console.log(val);
+            setData(val);
+            navigate('/result');
+        }
+        catch (e) {
+            console.log(e);
+        }
     }
 
 

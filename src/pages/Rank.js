@@ -1,8 +1,14 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-export default function Rank({ branchcode, handleChange2 }) {
+export default function Rank() {
     const navigate = useNavigate();
+
+    const [branchcode, setBranchcode] = useState("");
+    function handleChange2(event) {
+        setBranchcode(event.target.value);
+    }
+
 
     const [yoa, setYoa] = useState('');
 
@@ -21,14 +27,19 @@ export default function Rank({ branchcode, handleChange2 }) {
             window.alert("Invalid Year of Admission");
         }
         else if (grade != '') {
-            console.log(grade);
-            const response = await fetch('https://sem-result-server.onrender.com/getrank?grade=' + grade + '&yoa=' + yoa + '&branchcode=' + branchcode, {
-                mode: 'cors',
-                method: 'GET'
-            });
-            const val = await response.json();
-            setRank(val);
-            // window.alert('Your university rank is ' + val);
+            try {
+                // console.log(grade);
+                const response = await fetch('http://localhost:3001/getrank?grade=' + grade + '&yoa=' + yoa + '&branchcode=' + branchcode, {
+                    mode: 'cors',
+                    method: 'GET'
+                });
+                const val = await response.json();
+                setRank(val);
+                // window.alert('Your university rank is ' + val);
+            }
+            catch (e) {
+                console.log(e);
+            }
         }
     }
 

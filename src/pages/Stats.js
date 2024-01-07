@@ -1,7 +1,30 @@
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Histogram from './widgets/Histogram.js';
 export default function Stats({ data, page }) {
 
     const navigate = useNavigate();
+
+    function getWindowDimensions() {
+        const { innerWidth: width, innerHeight: height } = window;
+        return {
+            width,
+            height
+        };
+    }
+
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+    useEffect(() => {
+        function handleResize() {
+            setWindowDimensions(getWindowDimensions());
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+
     let body = [];
     if (data.length > 0) {
         for (let i = 10; i >= 0; i--) {
@@ -43,7 +66,7 @@ export default function Stats({ data, page }) {
             </td>
         </tr>);
     }
-    // console.log(body);
+    // console.log(data[0]);
     return (
         <div>
             {data.length > 0 ? (
@@ -63,7 +86,8 @@ export default function Stats({ data, page }) {
                             {body}
                         </tbody>
                     </table>
-                </div></div>) : (<div className="mt-24 mb-10 flex justify-center items-center md:text-xl text-md text-slate-100">Incorrect branchcode or coursecode! Try again.</div>)}
+                </div>{windowDimensions.innerWidth > 1000 ? <Histogram width={screen.width / 2} height={300} data={data[0]}></Histogram> : <Histogram width={screen.width / 1.5} height={300} data={data[0]}></Histogram>}
+                </div>) : (<div className="mt-24 mb-10 flex justify-center items-center md:text-xl text-md text-slate-100">Incorrect branchcode or coursecode! Try again.</div>)}
 
             <div className="flex justify-center">
                 <button onClick={() => navigate('/')} type="button" className="mt-4 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Back</button>

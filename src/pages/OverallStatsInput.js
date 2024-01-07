@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-export default function OverallStatsInput({ branchcode, handleChange2, setData, page, setpage }) {
+export default function OverallStatsInput({ setData, page, setpage }) {
     const navigate = useNavigate();
+    const [branchcode, setBranchcode] = useState("");
+    function handleChange2(event) {
+        setBranchcode(event.target.value);
+    }
 
     const [yoa, setYoa] = useState('');
     useEffect(() => {
         setpage('getoverallstats');
-        console.log(page);
+        // console.log(page);
     }, [page]);
     function handleChangeYoa(event) {
         setYoa(event.target.value);
@@ -17,13 +21,18 @@ export default function OverallStatsInput({ branchcode, handleChange2, setData, 
             window.alert("Invalid Year of Admission");
         }
         else {
-            const response = await fetch('https://sem-result-server.onrender.com/getoverallstats?&branchcode=' + branchcode.toUpperCase() + '&yoa=' + yoa.toUpperCase(), {
-                mode: 'cors',
-                method: 'GET'
-            });
-            const val = await response.json();
-            setData(val);
-            navigate('/stats');
+            try {
+                const response = await fetch('http://localhost:3001/getoverallstats?&branchcode=' + branchcode.toUpperCase() + '&yoa=' + yoa.toUpperCase(), {
+                    mode: 'cors',
+                    method: 'GET'
+                });
+                const val = await response.json();
+                setData(val);
+                navigate('/stats');
+            }
+            catch (e) {
+                console.log(e);
+            }
         }
     }
 
