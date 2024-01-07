@@ -86,7 +86,7 @@ export default function Stats({ data, page }) {
                             {body}
                         </tbody>
                     </table>
-                </div>{windowDimensions.innerWidth > 1000 ? <Histogram width={screen.width / 2} height={300} data={data[0]}></Histogram> : <Histogram width={screen.width / 1.5} height={300} data={data[0]}></Histogram>}
+                </div>{windowDimensions.innerWidth > 1000 ? <Histogram width={windowDimensions.innerWidth / 2} height={300} data={data[0]}></Histogram> : <Histogram width={windowDimensions.innerWidth / 1.5} height={300} data={data[0]}></Histogram>}
                 </div>) : (<div className="mt-24 mb-10 flex justify-center items-center md:text-xl text-md text-slate-100">Incorrect branchcode or coursecode! Try again.</div>)}
 
             <div className="flex justify-center">
