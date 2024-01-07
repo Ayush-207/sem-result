@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-export default function OverallStatsInput({ branchcode, handleChange2, setData }) {
+export default function OverallStatsInput({ branchcode, handleChange2, setData, page, setpage }) {
     const navigate = useNavigate();
 
     const [yoa, setYoa] = useState('');
-
+    useEffect(() => {
+        setpage('/getoverallstats');
+    }, [page]);
     function handleChangeYoa(event) {
         setYoa(event.target.value);
     }

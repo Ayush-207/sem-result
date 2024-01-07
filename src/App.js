@@ -13,6 +13,7 @@ function App() {
   const [rolln, setRolln] = useState("");
   const [branchcode, setBranchcode] = useState("");
   const [coursecode, setCoursecode] = useState("");
+  const [page, setPage] = useState('/getcoursestats');
   const [data, setData] = useState([]);
   function handleChangeRollno(event) {
     setRolln(event.target.value);
@@ -28,8 +29,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/get_result" element={<Rollno rolln={rolln} handleChange={handleChangeRollno} setData={setData} />} />
-        <Route path="/get_course_stats" element={<CourseStatsInput coursecode={coursecode} branchcode={branchcode} handleChange1={handleChangeCoursecode} handleChange2={handleChangeBranchcode} setData={setData} />} />
-        <Route path="/get_overall_stats" element={<OverallStatsInput branchcode={branchcode} handleChange2={handleChangeBranchcode} setData={setData} />} />
+        <Route path="/getcoursestats" element={<CourseStatsInput coursecode={coursecode} branchcode={branchcode} handleChange1={handleChangeCoursecode} handleChange2={handleChangeBranchcode} setData={setData} page={page} setpage={setPage} />} />
+        <Route path="/getoverallstats" element={<OverallStatsInput branchcode={branchcode} handleChange2={handleChangeBranchcode} setData={setData} page={page} setpage={setPage} />} />
         <Route path="/result" element={<Result data={data} />} />
         <Route path='/stats' element={<Stats data={data} />} />
         <Route path="/get_rank" element={<Rank branchcode={branchcode} handleChange2={handleChangeBranchcode} />} />

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 export default function Stats({ data }) {
+    
     const navigate = useNavigate();
     let body = [];
     if (data.length > 0) {
