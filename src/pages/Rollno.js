@@ -8,6 +8,7 @@ export default function Rollno({ setData, page }) {
     const [rolln, setRolln] = useState("");
     const [name, setName] = useState("");
     const [yoa, setYoa] = useState("");
+    const [isLoading, setIsLoading] = useState("");
     function handleChange(event) {
         if (page == 'rollno')
             setRolln(event.target.value);
@@ -23,7 +24,7 @@ export default function Rollno({ setData, page }) {
                 query = 'rollno=' + rolln.toUpperCase();
             }
             else query = 'name=' + name.toUpperCase() + '&yoa=' + yoa;
-            const response = await fetch('http://localhost:3001/getresult?' + query, {
+            const response = await fetch('https://sem-result-server.onrender.com/getresult?' + query, {
                 mode: 'cors',
                 method: 'GET'
             });
