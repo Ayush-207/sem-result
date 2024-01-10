@@ -27,7 +27,7 @@ export default function CourseStatsInput({ setData, page, setpage }) {
         }
         else if (coursecode != '' && yoa != '') {
             try {
-                const response = await fetch('https://sem-result-server.onrender.com/getcoursestats?coursecode=' + coursecode.toUpperCase() + '&branchcode=' + branchcode.toUpperCase() + '&yoa=' + yoa, {
+                const response = await fetch('http://localhost:3001/getcoursestats?coursecode=' + coursecode.toUpperCase() + '&branchcode=' + branchcode.toUpperCase() + '&yoa=' + yoa, {
                     mode: 'cors',
                     method: 'GET'
                 });

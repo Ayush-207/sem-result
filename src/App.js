@@ -16,13 +16,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/getresult" element={<Rollno setData={setData} />} />
+        <Route path="/" element={<Home setPage={setPage} />} />
+        <Route path="/getresult" element={<Rollno setData={setData} page={page} />} />
         <Route path="/getcoursestats" element={<CourseStatsInput setData={setData} page={page} setpage={setPage} />} />
         <Route path="/getoverallstats" element={<OverallStatsInput setData={setData} page={page} setpage={setPage} />} />
         <Route path="/result" element={<Result data={data} />} />
         <Route path='/stats' element={<Stats data={data} page={page} />} />
-        <Route path="/getrank" element={<Rank/>} />
+        <Route path="/getrank" element={<Rank />} />
       </Routes>
     </BrowserRouter>
   );
