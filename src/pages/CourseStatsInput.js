@@ -13,6 +13,7 @@ export default function CourseStatsInput({ setData, page, setpage }) {
     }
 
     const [yoa, setYoa] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         setpage('getcoursestats');
         // console.log(page);
@@ -27,15 +28,18 @@ export default function CourseStatsInput({ setData, page, setpage }) {
         }
         else if (coursecode != '' && yoa != '') {
             try {
+                setIsLoading(true);
                 const response = await fetch('https://sem-result-server.onrender.com/getcoursestats?coursecode=' + coursecode.toUpperCase() + '&branchcode=' + branchcode.toUpperCase() + '&yoa=' + yoa, {
                     mode: 'cors',
                     method: 'GET'
                 });
                 const val = await response.json();
                 setData(val);
+                setIsLoading(false);
                 navigate('/stats');
             }
             catch (e) {
+                setIsLoading(false);
                 console.log(e);
             }
         }
@@ -45,9 +49,7 @@ export default function CourseStatsInput({ setData, page, setpage }) {
     return (
         <div className="flex h-screen w-screen justify-center items-center">
             <div className="mb-6 flex-col justify-center items-center lg:h-1/3 lg:w-1/5 w-1/2 h-1/4">
-                {/* <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Roll </label> */}
-
-                <form onSubmit={(e) => { e.preventDefault(); getCourseStats(); }}>
+                {isLoading ? <div className='flex flex-row justify-center'><h1 className='text-gray-200 text-lg md:text-2xl'>Fetching Data...</h1></div> : <form onSubmit={(e) => { e.preventDefault(); getCourseStats(); }}>
                     <input required id="coursecode" onChange={handleChange1} value={coursecode} placeholder="Course Code" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </input>
                     <input id="branchcode" onChange={handleChange2} value={branchcode} placeholder="Branch Code(UIT)/Leave blank for overall" type="text" className="mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -59,7 +61,7 @@ export default function CourseStatsInput({ setData, page, setpage }) {
                         <button onClick={() => navigate('/')} type="button" className="mt-4 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Back</button>
 
                     </div>
-                </form>
+                </form>}
             </div>
         </div>
     );
